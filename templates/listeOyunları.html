@@ -1,0 +1,81 @@
+{% extends 'anaSayfa.html' %}
+{% load static %}
+{% block title %}
+<title>{{oyuncu.username}}</title>
+{% endblock title %}
+
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4">
+        <div style="position: fixed;">
+            {% if oyuncu.profil.user_image %}
+                <div style="width:210px; height:210px; background-color:#ffe0b3; border-radius:8px; padding:11%;">
+                    <img class="img-fluid" style="width:150px; height:150px;" src="{{oyuncu.profil.user_image.url}}">
+                </div>      
+            {% else %}
+                <div style="width:210px; height:210px; background-color:#ffe0b3; border-radius:8px; padding:11%;">
+                    <img class="img-fluid" style="width:150px; height:150px;" src="{% static 'kullanıcıimg.png'%}">
+                </div>
+            {% endif %}
+            <div style="border-style:double; margin-right:10%; margin-left:-10%; border-radius:5px; border-width:3px; background-color:#e6e6e6;">
+                {% if oyuncu.first_name %}
+                    <p><strong>İsim: </strong>{{oyuncu.first_name}} {{oyuncu.last_name}}</p>
+                {% endif %}
+                {% if oyuncu.profil.dogum_gunu %}
+                    <p><strong>Doğum Günü: </strong>{{oyuncu.profil.dogum_gunu}}</p>
+                {% endif %}
+                {% if oyuncu.profil.cinsiyet %}
+                    <p><strong>Cinsiyet: </strong>{{oyuncu.profil.cinsiyet}}</p>
+                {% endif %}
+                {% if oyuncu.profil.location %}
+                    <p><strong>Konum: </strong>{{oyuncu.profil.location}}</p>
+                {% endif %}
+                <p><strong>Son Çevrimiçi: </strong>{{oyuncu.last_login}}</p>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <a title="Arkadaş Ekle" href="/user/add/{{oyuncu.id}}"><i class="fas fa-user-check" style="font-size:24px; color: black"></i></a>
+                </div>
+                <div class="col">
+                    <a title="Mesaj At" href="/user/direct-mesaj/{{oyuncu.id}}"><i class="fas fa-comment-dots" style="font-size:24px; color: black"></i></a>
+                </div>
+                <div class="col">
+                    <a title="Engelle" href="/user/block/{{oyuncu.id}}"><i class="fas fa-user-alt-slash" style="font-size:24px; color: black"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h5>Ortak Oyunlarınız:</h5>
+        <br>
+        <table class="table table-hover">
+            <tbody>
+            {% for oyun in oyunlarım %}
+                <tr>
+                    <td><a href="/oyunlar/detail/{{oyun.game.oyun_isim}}"><img src="{{oyun.game.game_image.url}}" style="width:60px; height:45px;"></a></td>
+                    <td><a href="/oyunlar/detail/{{oyun.game.oyun_isim}}">{{oyun.game.oyun_isim}}</a></td>
+                    <td>{{oyun.game.kategoriler}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <h5>Oyunları:</h5>
+        <br>
+        <table class="table table-hover">
+            <tbody>
+            {% for oyun in oyun %}
+                <tr>
+                    <td><a href="/oyunlar/detail/{{oyun.game.oyun_isim}}"><img src="{{oyun.game.game_image.url}}" style="width:60px; height:45px;"></a></td>
+                    <td><a href="/oyunlar/detail/{{oyun.game.oyun_isim}}">{{oyun.game.oyun_isim}}</a></td>
+                    <td>{{oyun.game.kategoriler}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock body %}

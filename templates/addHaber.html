@@ -1,0 +1,18 @@
+{% extends 'anaSayfa.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Haber Ekle</title>
+{% endblock title %}
+
+{% block body %}
+<div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form|crispy }}
+        <div class="text-center">
+            <button type="submit" class="btn btn-success btn-block">Ekle</button>
+        </div>
+    </form>
+{% endblock body %}
+

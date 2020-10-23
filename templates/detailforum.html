@@ -1,0 +1,168 @@
+{% extends 'anaSayfa.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>{{soru.title}}</title>
+{% endblock title %}
+{% block style %}
+.zoom {
+  background-color:  #f2f2f2;
+  max-width:110px;
+  border-radius:8px;
+  transition: transform .5s;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(2.2); 
+}
+
+{% endblock style %}
+
+{% block body %}
+<div class="row">
+    <div class="col-3" style="height:500px;">
+        {% if soru.soran.profil.user_image %}
+            <a href="/user/profil/{{soru.soran.id}}"><img class="img-fluid" style="width:100px; height:100px; border-radius:8px;" src="{{soru.soran.profil.user_image.url}}"></a>
+            <div class="zoom">
+                <div>
+                    <p style="font-size:9px"><strong>Güncel Yazıları:</strong></p>
+                </div>
+                <div style="margin-top:-18px;">
+                <table class="table" >
+                    <tbody >
+                        {% for yazar in yazar %}
+                            <tr >
+                                <td ><p style=" margin-top:-10px; margin-bottom:-10px;"><a style="font-size:6px;" href="/forum/detail/{{yazar.id}}">{{yazar.title|truncatewords:7}}</a></p></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>  
+            </div>
+        {% else %}
+            <a href="/user/profil/{{soru.soran.id}}"><img class="img-fluid" style="width:100px; height:100px;" src="{% static 'kullanıcıimg.png'%}"></a>            
+            <div class="zoom">
+                <div>
+                    <p style="font-size:9px"><strong>Güncel Yazıları:</strong></p>
+                </div>
+                <div style="margin-top:-18px;">
+                <table class="table" >
+                    <tbody >
+                        {% for yazar in yazar %}
+                            <tr >
+                                <td ><p style=" margin-top:-10px; margin-bottom:-10px;"><a style="font-size:6px;" href="/forum/detail/{{yazar.id}}">{{yazar.title|truncatewords:7}}</a></p></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        {% endif %}
+        <div class="d-flex justify-content-between" style="max-width:100px;">
+            <a href="/forum/detail/like/{{soru.id}}"><i class='far fa-grin-hearts' style="font-size:24px; margin-top:6px; color:#cc0000" title="Beğen"></i></a>
+            <a type="button" class="btn" data-toggle="modal" style="color:#e6e6e6" data-target="#myModal"><i title="Report" class="fas fa-exclamation-triangle" style="font-size:22px; color:#cc0000"></i></a>
+            
+        </div>
+        <div>
+            <p style="font-size:14px;"><strong>Beğenme: </strong>{{toplamBegenme}}</p>
+            <p style="font-size:14px;"><strong>Yorum: </strong>{{toplamYorum}}</p>
+        </div>
+    </div>
+    <div class="col-9" style="  height:500px;">
+        <div>
+            <h3 class="text-center">{{soru.title}}</h3>
+            <p> {{soru.soru|safe}}</p>
+        </div>
+        <hr>
+        {% if  request.user.is_authenticated %}
+            <div>
+                <h4>Yorum Yap:</h4>
+               <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-10">
+                            {{form.yorum|as_crispy_field}}
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" style="margin-top:25%" class="btn btn-primary">Ekle</button>
+                        </div>
+                    </div>
+               </form>
+            </div>
+        {% endif %}   
+        <div>
+            <h4>Yorumlar:</h4>
+            <div>
+                {% for yorum,begeni, update in yorumlar %}
+                    <div class="row">
+                        <div class="col-1" >
+                            {% if yorum.yorumYapan.profil.user_image %}
+                                <a href="/user/profil/{{yorum.yorumYapan.id}}"><img style="width:60px; height:60px" class="rounded-circle" src="{{yorum.yorumYapan.profil.user_image.url}}"></a>
+                            {% else %}
+                                <a href="/user/profil/{{yorum.yorumYapan.id}}"><img style="width:60px; height:60px" class="rounded-circle" src="{% static 'kullanıcıimg.png'%}"></a>
+                            {% endif %}
+                        </div>
+                        {% if update == 1 %}
+                            <div class="col-10">
+                                <p class="container">{{yorum.yorum}}</p>
+                            </div>
+                            <div class="col-1">
+                                <a href="/forum/detail/deleteyorum/{{yorum.id}}"><i title="Sil" class="fas fa-wrench" style="font-size:18px; color:red"></i></a>
+                            </div>
+                        {% else %}
+                            <div class="col-11">
+                                <p class="container">{{yorum.yorum}}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            <a href="/forum/detail/favYorum/{{yorum.id}}"><i class="far fa-heart" style="font-size:24px; color:red;"></i></a><strong style="font-size:12px; font-family:fantasy;">{{begeni}}</strong>
+                        </div>
+                        <div class="col-10 text-right">
+                            <p style="font-size:10px;">{{yorum.dateyorum}}<br><strong style="color:#668cff"><a href="/user/profil/{{yorum.yorumYapan.id}}">{{yorum.yorumYapan}}</a></strong></p>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Report</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+           <form method="POST" action="/forum/detail/report/{{soru.id}}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+                        {{formreport|crispy}}
+                    </div>
+                    <div class="col-12 text-center">
+                        <button type="submit" style="margin-top:25%" class="btn btn-primary">Ekle</button>
+                    </div>
+                </div>
+            </form> 
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+{% endblock body %}

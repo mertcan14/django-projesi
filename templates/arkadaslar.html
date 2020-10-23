@@ -1,0 +1,111 @@
+{% extends 'anaSayfa.html' %}
+{% load static %}
+{% block title %}
+<title>Arkadaslar</title>
+{% endblock title %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-4">
+                <h4>Arkadaslar:</h4>
+            </div>
+            <div class="col-8 d-flex justify-content-end">
+                <form class="form-inline  md-form form-sm col-8" >
+                    {% csrf_token %}
+                    <input class="form-control  form-control-sm mr-3 w-75" type="text" placeholder="Search" name="keyword_arkadas" aria-label="Search">
+                    <button class="btn btn-light" type="submit">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                    </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!--<table class="table table-hover">
+            <tbody>
+            {% for arkadas in arkadaslar %}
+                <tr >
+                    {% if arkadas.eklenen.profil.user_image %}
+                        <td><a href="/user/profil/{{arkadas.eklenen.id}}"><img style="width:40px; height:40px;" src="{{arkadas.eklenen.profil.user_image.url}}"/></a></td>
+                    {% else %}
+                        <td><a href="/user/profil/{{arkadas.eklenen.id}}"><img style="width:40px; height:40px;" src="{% static 'kullanıcıimg.png'%}"></a></td>
+                    {% endif %}
+                    <td><a style="color:black" href="/user/profil/{{arkadas.eklenen.id}}">{{arkadas.eklenen.username}}</a></td>
+                    <td>{{arkadas.eklenen.email}}</td>
+                    <td><a class="btn"><i class="far fa-comment-dots"></i></a></td>
+                    <td><a class="btn" href="/user/arkadas/delete/{{arkadas.eklenen.id}}"><i class="fas fa-user-minus"></i></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>-->
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default" >
+                <table class="table table-hover">
+                    <tbody>
+                    {% for arkadas in arkadaslar %}
+                        <div id="{{arkadas.eklenen.id}}">
+                            <div class="panel-heading" style="background-color:#e6e6e6; border-radius:8px;" >
+                                <div>
+                                    <tr class="panel-title container" data-toggle="collapse" data-parent="#accordion" href="#collapse{{arkadas.eklenen.id}}">
+                                        {% if arkadas.eklenen.profil.user_image %}
+                                            <td><a href="/user/profil/{{arkadas.eklenen.id}}"><img style="width:40px; height:40px;" src="{{arkadas.eklenen.profil.user_image.url}}"/></a></td>
+                                        {% else %}
+                                            <td><a href="/user/profil/{{arkadas.eklenen.id}}"><img style="width:40px; height:40px;" src="{% static 'kullanıcıimg.png'%}"></a></td>
+                                        {% endif %}
+                                        <td><a href="/user/profil/{{arkadas.eklenen.id}}" style="color:black; font-family:Comic Sans MS">{{arkadas.eklenen.username}}</a></td>
+                                        <td><a class="btn"><i class="far fa-comment-dots"></i></a></td>
+                                        <td><a title="Çıkart" class="btn" href="/user/arkadas/delete/{{arkadas.eklenen.id}}"  style="border-radius:5px"><i class='fas fa-user-minus' style='font-size:20px'></i></a></td>
+                                    </tr>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 container d-flex justify-content-end" >
+        <div class="overflow-auto" style="position:fixed; max-height:550px; width:315px;" >
+            <h6><strong>Önerilen Oyuncular:</strong></h6>
+            <table class="table table-hover">
+                <tbody >
+                {% for arkadas in arkadasoneri %}
+                    <tr >
+                        {% if arkadas.profil.user_image %}
+                            <td><a href="/user/profil/{{arkadas.id}}"><img style="width:30px; height:30px;" src="{{arkadas.profil.user_image.url}}"/></a></td>
+                        {% else %}
+                            <td><a href="/user/profil/{{arkadas.id}}"><img style="width:30px; height:30px;" src="{% static 'kullanıcıimg.png'%}"></a></td>
+                        {% endif %}
+                        <td><a style="color:black; font-family:Comic Sans MS" href="/user/profil/{{arkadas.id}}">{{arkadas.username}}</a></td>
+                         <td><a class="btn" title="Arkadas Ekle" href="/user/add/{{arkadas.id}}"><i class="fas fa-user-plus"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div>
+             <p><strong>Arkadaşlarınızın En Son Eklediği Oyunlar:</strong></p>
+             <table class="table table-hover">
+                <tbody >
+                    {% for sonoyunarkadas in sonoyunarkadas %}
+                        <tr >
+                            <td><a href="/oyunlar/detail/{{sonoyunarkadas.game.oyun_isim}}"><img style="width:30px; height:30px;" src="{{sonoyunarkadas.game.game_image.url}}"/></a></td>
+                            <td><a style="color:black" href="/oyunlar/detail/{{sonoyunarkadas.game.oyun_isim}}">{{sonoyunarkadas.game.oyun_isim}}</a></td>
+                            <td><a style="color:black; font-family:Comic Sans MS" href="/user/profil/{{sonoyunarkadas.user.id}}">{{sonoyunarkadas.user.username}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </div>
+        </div> 
+        <div class="overflow-auto" style="position:fixed; max-height:250px; width:275px;" >   
+    </div>
+</div>
+
+{% endblock body %}
+

@@ -1,0 +1,49 @@
+{% extends 'anaSayfa.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>Oyun Ekle</title>
+{% endblock title %}
+
+{% block body %}
+<div>
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        {{ form.media }}
+        {{form.oyun_isim|as_crispy_field}}
+        <h5>Oynanılan Platformlar</h5>
+        <div class="row">
+            <div class="col-sm-4">
+                {{form.bilgisayar_platform|as_crispy_field}}
+            </div>
+            <div class="col-sm-4">
+                {{form.mobil_platform|as_crispy_field}}
+            </div>
+            <div class="col-sm-4">
+                {{form.konsol_platform|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                {{form.kategoriler|as_crispy_field}}
+            </div>
+            <div class="col-sm-4">
+            <h6>Dil</h6>
+                {{form.türkce_dil|as_crispy_field}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                {{form.geliştirici|as_crispy_field}}
+            </div>
+            <div class="col-sm-6">
+                {{form.cıkıs_tarih|as_crispy_field}}
+            </div>
+        </div>
+        {{form.hakkında|as_crispy_field}}
+        {{form.game_image|as_crispy_field}}
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary btn-lg">Ekle</button>
+        </div>
+    </form>
+</div>
+{% endblock body %}

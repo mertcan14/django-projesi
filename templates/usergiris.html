@@ -1,0 +1,14 @@
+
+{% extends 'anaSayfa.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <h3>Giris</h3>
+    <form method="POST">
+    {% csrf_token %}
+        {{form|crispy}}
+                <div class="row justify-content-center">
+            <button type="submit" class="btn-lg" style="background-color:#668cff">Kayıt OL</button>
+        </div>
+    </form>
+{% endblock body %}

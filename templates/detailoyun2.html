@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{{oyun.oyun_isim}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    position: relative;
+    background-color:#00001a;
+  }
+  div.nav-pills {
+    margin-top:3%;
+    position: fixed;
+  }
+  div.col-8 div {
+    height: 500px;
+  }
+  </style>
+</head>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+{% include 'input/navbar2.html' %}
+<br>
+{% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <div style="margin-right:2%;">
+            <div class="alert alert-{{message.tags}} alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>{{ message }}</strong> 
+            </div>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+<div class="container">
+  <div class="row">
+    <nav class="col-sm-4"  id="myScrollspy">
+      <div class="nav-pills">
+        <img style="max-width:240px; max-height:190px; width:auto; min-width:180px; min-height:100px; border-radius:5px" class="img-fluid"  src="{{oyun.game_image.url}}"></img>
+        <br>
+        <div style="border-style:double; border-radius:5px; border-width:4px; background-color:#e6e6e6; margin-top:5%; max-width:240px">
+          <p><strong>Çıkış Tarihi:</strong>{{oyun.cıkıs_tarih}}</p>
+          {% if oyun.türkce_dil == True %}
+            <p><strong>Türkçe: </strong>Evet</p>
+          {% else %}
+            <p><strong>Türkçe: </strong>Hayır</p>
+          {% endif %}
+          <p><strong>Geliştirici: </strong>{{oyun.geliştirici}}</p>
+          <p><strong>Kategoriler: </strong>{{oyun.kategoriler}}</p>
+        </div>
+        <br>
+        <a title="Oynuyorum" href="/oyunlar/detail/add/{{oyun.id}}"><i class="fas fa-gamepad" style="font-size:30px; color:#e6e6e6;"></i></a>
+        <a title="Paylaş" href="/oyunlar/detail/share/{{oyun.id}}"><i class="fas fa-paper-plane" style="font-size:30px; margin-left:5%; color:#e6e6e6;"></i></a>
+      </div>
+    </nav>
+    <div class="col-sm-8">
+      <div id="section1" class="container" style="margin-top:5%; background-color:#e6e6e6;  border-style:double; border-radius:5px; border-width:4px; padding:2%">
+      {% if platform == "123" %}
+        <h2 style="text-align: center">{{oyun.oyun_isim}} &emsp;<i title="Mobil" class='fas fa-mobile-alt' style='font-size:24px; color:'></i> <i title="Konsol" class='fas fa-gamepad' style='font-size:24px'></i><i title="Bilgisayar" class='fas fa-laptop' style='font-size:24px'></i></h2>
+      {% elif platform == "12" %}
+        <h2 style="text-align: center">{{oyun.oyun_isim}} &emsp;<i title="Bilgisayar" class='fas fa-laptop' style='font-size:24px'></i><i title="Mobil" class='fas fa-mobile-alt' style='font-size:24px'></i></h2>
+      {% elif platform == "13" %}
+        <h2 style="text-align: center">{{oyun.oyun_isim}} &emsp;<i title="Bilgisayar" class='fas fa-laptop' style='font-size:24px'></i><i title="Konsol" class='fas fa-gamepad' style='font-size:24px'></i></h2>
+      {% elif platform == "23" %}
+        <h2 style="text-align: center">{{oyun.oyun_isim}} &emsp;<i title="Mobil" class='fas fa-mobile-alt' style='font-size:24px'></i><i title="Konsol" class='fas fa-gamepad' style='font-size:24px'></i></h2>
+      {% elif platform == "1" %}
+        <h2 style="text-align: center">{{oyun.oyun_isim}} &emsp;<i title="Bilgisayar" class='fas fa-laptop' style='font-size:24px'></i></h2>
+      {% elif platform == "2" %}
+        <h2 style="text-align: center">{{oyun.oyun_isim}} &emsp;<i title="Mobil" class='fas fa-mobile-alt' style='font-size:24px'></i></h2>
+      {% elif platform == "3" %}
+        <h2 style="text-align: center">{{oyun.oyun_isim}} &emsp;<i title="Konsol" class='fas fa-gamepad' style='font-size:24px'></i></h2>
+      {% endif %}
+        <p>{{oyun.hakkında|safe}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

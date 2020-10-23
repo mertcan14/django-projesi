@@ -1,0 +1,14 @@
+{% extends 'anaSayfa.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+<title>Ekle Forum</title>
+{% endblock title %}
+
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.media }}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-primary">Ekle</button>
+</form>
+{% endblock body %}

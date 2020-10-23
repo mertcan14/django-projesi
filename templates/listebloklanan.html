@@ -1,0 +1,41 @@
+{% extends 'anaSayfa.html' %}
+{% load static %}
+{% block title %}
+<title>Bloklanan Kullanıcılar</title>
+{% endblock title %}
+
+{% block body %}
+{% if blockuser %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Engeli Kaldır</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in blockuser %}
+            <tr>
+                {% if user.bloklanan.profil.user_image %}
+                    <td><a href="/user/profil/{{user.bloklanan.id}}"><img class="img-fluid" src="{{user.bloklanan.profil.user_image.url}}" style="width:45px; height:45px"></a></td>
+                {% else %}
+                    <td><a href="/user/profil/{{user.bloklanan.id}}"><img class="img-fluid" src="{% static 'kullanıcıimg.png'%}" style="width:45px; height:45px"></a></td>
+                {% endif %}
+                <td><a href="/user/profil/{{user.bloklanan.id}}" style="color:black;">{{user.bloklanan.username}}</a></td>
+                <td>{{user.bloklanan.email}}</td>
+                <td><a class="btn btn-primary" href="/user/profil/blockuser/delete/{{user.bloklanan.id}}" style="background-color:#c2d6d6"><i class="fas fa-user-cog"></i></a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="container">
+    <div class="alert alert-info alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Engellenen</strong> Kullanıcı bulunamadı.
+    </div>
+  </div>          
+{% endif %}
+{% endblock body %}

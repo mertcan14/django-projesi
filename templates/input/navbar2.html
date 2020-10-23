@@ -1,0 +1,75 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'navbar.css' %}">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#668cff">
+  <a class="navbar-brand anaYazı" href="/">M.G.F.</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Oyunlar
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/oyunlar/pcoyunlar">PC</a>
+                <a class="dropdown-item" href="/oyunlar/mobiloyunlar">Mobil</a>
+                <a class="dropdown-item" href="/oyunlar/konsoloyunlar">Oyun Konsolları</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/oyunlar">Hepsi</a>
+            </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/haberler">Haberler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/forum">Forum</a>
+        </li>
+      <!--<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>-->
+    </ul>
+    <ul class="navbar-nav">
+    {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{request.user.username}}<span class="sr-only">(current)</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/user/profil">Profil</a>
+                <a class="dropdown-item" href="/user/bildirim">Bildirimler</a>
+                
+            </div>
+        </li>
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Arkadaşlar
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/user/arkadaslar">Arkadaşlarım</a>
+                <a class="dropdown-item" href="/user/find/friends">Arkadaş Bul</a>
+            </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/logout">Çıkış Yap</a>
+        </li>
+    {% else %}
+        <li class="nav-item">
+          <a  class="nav-link" href="/user/kayıt">Kayıt Ol</a>
+        </li>
+        <li class="nav-item">
+          <a  class="nav-link" href="/user/giris">Giriş Yap</a>
+        </li>
+    {% endif %}
+    </ul>
+  </div>
+</nav>

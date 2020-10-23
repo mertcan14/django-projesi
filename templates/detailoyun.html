@@ -1,0 +1,135 @@
+{% extends 'anaSayfa.html' %}
+
+{% block title %}
+    <title>Detail</title>
+{% endblock title %}
+
+
+{% block body %}
+{% if oyun %}
+    <div>
+        <div class="row " >
+            <div class="col-12 col-md-8" style="background-color:rgb(250,250,250); border-radius:10px">
+                <h2 style="text-align:center; font-family:'Times New Roman', Times, serif; margin-top:20px">{{oyun.oyun_isim}}</h2>
+                <div class="row" style="margin-top:20px">
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <h6><span>Geliştirici:</span></h6>
+                            </div>
+                            <div class="col-sm-7">
+                                <p style="text-align:left">{{oyun.geliştirici}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <h6>Çıkış Tarihi:</h6>
+                            </div>
+                            <div class="col-sm-7">
+                                <p>{{oyun.cıkıs_tarih}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="row">
+                        {% if oyun.türkce_dil == True %}
+                            <div class="col-sm-7">
+                                <h6>Türkçe Dil:</h6>
+                            </div>
+                            <div class="col-sm-5">
+                                <p>Evet</p>
+                            </div>
+                        {% else %}
+                            <div class="col-sm-7">
+                                <h6>Türkçe Dil:</h6>
+                            </div>
+                            <div class="col-sm-5">
+                                <p>Hayır</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px">
+                    <div class="col-sm-6" >
+                        {% if platform == "123" %}
+                            <div class="col">
+                                <h6>Oynan Platform:</h6>
+                            </div>
+                            <div class="col">
+                                <p>Bilgisayar, Mobil ve Konsol</p>
+                            </div>
+                        {% elif platform == "12" %}
+                            <div class="col">
+                                <h6>Oynan Platform:</h6>
+                            </div>
+                            <div class="col">
+                                <p>Bilgisayar ve Mobil</p>
+                            </div>
+                        {% elif platform == "13" %}
+                            <div class="col">
+                                <h6>Platform:</h6>
+                            </div>
+                            <div class="col">
+                                <p>Bilgisayar ve Konsol</p>
+                            </div>
+                        {% elif platform == "23" %}
+                            <div class="col">
+                                <h6>Oynan Platform:</h6>
+                            </div>
+                            <div class="col">
+                                <p>Mobil ve Konsol</p>
+                            </div>
+                        {% elif platform == "1" %}
+                            <div class="col">
+                                <h6>Platform:</h6>
+                            </div>
+                            <div class="col">
+                                <p>Bilgisayar</p>
+                            </div>
+                        {% elif platform == "2" %}
+                            <div class="col">
+                                <h6>Oynan Platform:</h6>
+                            </div>
+                            <div class="col">
+                                <p>Mobil</p>
+                            </div>
+                        {% elif platform == "3" %}
+                            <div class="col">
+                                <h6>Oynan Platform:</h6>
+                            </div>
+                            <div class="col">
+                                <p>Konsol</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-7">
+                                <h6>Kategoriler:</h6>
+                            </div>
+                            <div class="col-sm-5">
+                                <p>{{oyun.kategoriler}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4" >
+                <img class="responsive" src="{{oyun.game_image.url}}"></img>
+            </div>
+        </div>
+        <div class="row" style="margin-top:5%">
+            <div class="col-sm-8" >
+                {{oyun.hakkında|safe}}
+            </div>
+            <div class="col-sm-4">
+                <div class="col">
+                    <a class="btn btn-primary" title="Oynuyorum" href="/oyunlar/detail/add/{{oyun.id}}"><i class="fas fa-gamepad"></i></a>
+                    <a class="btn btn-primary" title="Paylaş" href="/oyunlar/detail/share/{{oyun.id}}"><i class="fas fa-paper-plane"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock body %}

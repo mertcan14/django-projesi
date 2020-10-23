@@ -1,0 +1,53 @@
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-lg-10">
+
+        <!-- Blog Post -->
+        {% if oyun %}
+            {% for oyun in oyun %}
+                {% if oyun.game_image %}
+                    <div class="row" style="margin-top:2%; margin-right:4%; ">
+                        <div class="col-sm-3" style="background-color:rgb(245,245,245); border-radius: 10px 0px 0px 10px">
+                            <a href="/oyunlar/detail/{{oyun.oyun_isim}}"><img src="{{oyun.game_image.url}}" style="border-radius:10px" width="140px" height="90px"></a>
+                        </div>
+                        <div class="col-sm-8" style="background-color:rgb(245,245,245); ">
+                            <a href="/oyunlar/detail/{{oyun.oyun_isim}}" style="text-align:center"><h6>{{oyun.oyun_isim}}</h6></a>
+                            <div class="col-sm-4">
+                                <div>
+                                    <p><strong>Kategoriler:</strong> {{oyun.kategoriler|truncatewords:3}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1  text-right " style="background-color:rgb(245,245,245); border-radius: 0px 15px 15px 0px;">
+                            <div>
+                                <a class="btn btn-primary " style="margin-top:8%; align: right; width:42px; height:38px;" title="Oynuyorum" href="/oyunlar/detail/add/{{oyun.id}}"><i class="fas fa-gamepad"></i></a>
+                            </div>
+                            <div>
+                                <a class="btn btn-primary" style="margin-top:8%; width:42px; height:38px; " title="Paylaş" href="/oyunlar/detail/add/{{oyun.id}}"><i class="fas fa-paper-plane"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Maalesef!</strong> Bu kategoride oyun bulunamadı.
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-lg-2 overflow-auto container" style="position:fixed; margin-left:65%; background-color:#cacae7; border-radius:8px; max-height:350px; padding:1%;">
+        <h5><a href="/oyunlar" style="color:black">Kategoriler</a></h5>
+        <a href="/oyunlar/aksiyon" style="color:black"><p>Aksiyon</p></a>
+        <a href="/oyunlar/fps" style="color:black"><p>FPS</p></a>
+        <a href="/oyunlar/macera" style="color:black"><p>Macera</p></a>
+        <a href="/oyunlar/strateji" style="color:black"><p>Strateji</p></a>
+        <a href="/oyunlar/yaris" style="color:black"><p>Yarış</p></a>
+        <a href="/oyunlar/hayattakalma" style="color:black"><p>Hayatta Kalma</p></a>
+        <a href="/oyunlar/spor" style="color:black"><p>Spor</p></a>    
+    </div>
+</div>

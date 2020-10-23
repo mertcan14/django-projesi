@@ -1,0 +1,24 @@
+.foto{
+    width: 50%;
+    height: 50%;
+    margin-left: 25%;
+    margin-top: 15%;
+    border-radius: 30px;
+    background-color: #668cff;
+}
+.fotoo{
+    width: 50%;
+    height: 50%;
+    margin-left: 15%;
+    border-radius: 30px;
+}
+.cizgi{
+    width:75%;
+}
+.responsive {
+    width: 100%;
+    max-width: 200px;
+    max-height: 200px;
+
+  }
+

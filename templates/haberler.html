@@ -1,0 +1,80 @@
+{% extends 'anaSayfa.html' %}
+
+{% block title %}
+<title> Haberler</title>
+{% endblock title %}
+
+{% block body %}
+<!--<div>
+    {% for haber in haberler %}
+        <p>{{haber.content|safe}}</p>
+        <hr>
+    {% endfor %}
+</div>-->
+<div class="container">
+    <form class="form-inline  md-form form-sm col-10" >
+        {% csrf_token %}
+        <input class="form-control  form-control-sm mr-3 w-75" type="text" placeholder="Search" name="keyword_haber" aria-label="Search">
+        <button class="btn btn-light" type="submit">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+        </svg>
+        </button>
+    </form>
+    <div class="btn-group btn-block">
+        <a type="button" href="/haberler/sırala/begen" style="border-width:2px; border-radius:3px; border-color:rgb(180,200,180)" class="btn btn-outline-light text-dark">Beğeni</a>
+        <a type="button" href="/haberler/sırala/guncel" style="border-width:2px; border-radius:3px; border-color:rgb(180,200,180)" class="btn btn-outline-light text-dark">Güncel</a>
+        <a type="button" href="/haberler/sırala/yorum" style="border-width:2px; border-radius:3px; border-color:rgb(180,200,180)" class="btn btn-outline-light text-dark">Yorum</a>
+    </div>
+  {% if haberlerr %}
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="row">
+          {% for haber,begenme, yorum in haberlerr %}
+              <div class="col-lg-6 col-md-6">
+                  <aside style=" margin-top: 30px; -webkit-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1); -moz-box-shadow: 1px 4px 16px 3px rgba(199,197,199,1); box-shadow: 1px 4px 16px 3px rgba(199,197,199,1);">
+                      <img src="{{haber.haber_image.url}}" style="width:320px; height:250px; margin-left:3%; margin-top:3%; border-radius:5px;" class="img-responsive">
+                      <div style="padding:5px;background-color:#fff;">
+                          <div class="text-center">
+                          <h4><a style="color:black;" href="/haberler/detail/{{haber.id}}">{{haber.baslik}}</a></h4>
+                          </div>
+                      </div>
+                  </aside>
+                  <div class="d-flex justify-content-between" style="background-color:#668cff;">
+                      <div>
+                          <a href="/user/profil/{{haber.user.id}}" style="color:black"><p class="container" style="margin-top:2%;"><strong>{{haber.user}}</strong></p></a>
+                      </div>
+                      <div>
+                          <div style="margin-top:4%;">
+                              <i class='fas fa-thumbs-up'>{{begenme}}</i>
+                              <i class='fas fa-comment'>{{yorum}}</i>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+      </div>
+    </div>
+    <div class="col-lg-4" >
+      <h5>Güncel Haberler:</h5>
+      <div class="list-group" style="margin-left:5%;">
+        {% for guncelhaber in guncelHaberler %}
+          <a style="font-family:Lucida Sans" class="list-group-item list-group-item-action">{{guncelhaber.baslik}}</a>
+        {% endfor %}
+      </div>
+      <hr>
+      <h5><a href="/haberler" style="color:black">Kategoriler:</a></h5>
+      <div class="list-group" style="margin-left:5%;">
+          <a style="font-family:Lucida Sans" href="/haberler/kategori/oyun" class="list-group-item list-group-item-action">Oyun</a>
+          <a style="font-family:Lucida Sans" href="/haberler/kategori/konsol" class="list-group-item list-group-item-action">Konsol</a>
+          <a style="font-family:Lucida Sans" href="/haberler/kategori/harita" class="list-group-item list-group-item-action">Harita</a>
+          <a style="font-family:Lucida Sans" href="/haberler/kategori/ücretsiz" class="list-group-item list-group-item-action">Ücretsiz</a>
+          <a style="font-family:Lucida Sans" href="/haberler/kategori/yeni" class="list-group-item list-group-item-action">Yeni</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+ 
+{% endblock body %}
