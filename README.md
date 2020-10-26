@@ -36,3 +36,9 @@ Moderetorlerin yazdığı haberleri sıralıyorum. Kategoriler oyunlar kategoros
 Sayfa da haberi yazan moderetör ile ilgili bir bölümde önceden yazdığı haberler ve hakkında kısmı yer alıoyor. Eğer kullanıcı giriş yaptı ise yorum yapabiliyor, haberi beğenebiliyor ve isterse haberi rapor edebiliyor. 
 
 ![Detail Haber](https://user-images.githubusercontent.com/61551987/97183881-56541a00-17af-11eb-8aa7-8e8d05c01b6f.JPG)
+
+#### Haber Ekle
+
+Haber eklemeyi /haberler/addHaber/ den yapıyorum content kısmını djongo ckeditor ile yaptım bu şekilde video ve görsel paylaşabildim. Forum ekle kısmı da aynı şekil de yaptım. 
+
+![Haber Ekle](https://user-images.githubusercontent.com/61551987/97184632-2c4f2780-17b0-11eb-9e26-6d1f31c9ed3f.JPG)
