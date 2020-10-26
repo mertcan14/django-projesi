@@ -18,3 +18,4 @@ Djangonun hazır user modeli ile kullanarak kayıt ol sayfasını oluşturdum.
 
 Hazır olan user modelini veri tabanını ile sorgulayıp girişi sağladım.
 
+![Giriş Yap](https://user-images.githubusercontent.com/61551987/97161013-4415b400-178e-11eb-9021-033255f8ce69.JPG)
