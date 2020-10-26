@@ -59,3 +59,8 @@ Her kayıt olan kullanıcın otomatik profil modeli oluşturuluyor. Bu şekilde 
 
 Kullanıcıları buradan bulabiliriz listenen kullanıcıların ortak oyunları ve ortak arkadaslarını görebilriz.
 ![Arkadas Bul](https://user-images.githubusercontent.com/61551987/97186930-f9f2f980-17b2-11eb-9740-982af7a26768.JPG)
+
+#### Arkadaslarım
+
+Kullanıcın arkadaslarını gördüğü sayfadır isterse buradan arkadasını çıkartabilir ve arkadaslarının en son eklediği oyunları görebilir. Arkadaslarının profiline giderek ortak oyunlarını hakkında ki bilgileri görebilir.
+![Arkadaslarım](https://user-images.githubusercontent.com/61551987/97187351-6a9a1600-17b3-11eb-901f-fe4cd7efc069.JPG)
