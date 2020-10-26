@@ -54,3 +54,8 @@ Kullanıcılar giriş yaptı ise forum da yazı yazabilirler, yorum bırakabilir
 Her kayıt olan kullanıcın otomatik profil modeli oluşturuluyor. Bu şekilde user modelini değiştirmeden user modeline profil modelini bağlayıp bu şekilde kullanmayı seçtim. Buradan oyunlarımdan daha önce seçtiği oyunlara ulaşabilir ve listesinde olan oyunun hangi arkadaşında da listesinde olduğunu görebilir. Kullanıcın blokladığı kullanıcıları buradan görebilir ve bloğu buradan kaldırabilir. Kullanıcın blokladığı user, bloklayen kullanıcın profilini göremez ayrıca bloklayan kullanıcı bloklanan kullanıcının yazdığı forumlar /forum/ da gözükmez. 
 
 ![Profil](https://user-images.githubusercontent.com/61551987/97185729-797fc900-17b1-11eb-8d0c-7cca1a5c19ee.JPG)
+
+#### Arkadas Bul
+
+Kullanıcıları buradan bulabiliriz listenen kullanıcıların ortak oyunları ve ortak arkadaslarını görebilriz.
+![Arkadas Bul](https://user-images.githubusercontent.com/61551987/97186930-f9f2f980-17b2-11eb-9740-982af7a26768.JPG)
