@@ -48,3 +48,9 @@ Haber eklemeyi /haberler/addHaber/ den yapıyorum content kısmını djongo cked
 Kullanıcılar giriş yaptı ise forum da yazı yazabilirler, yorum bırakabilirler, beğenebilirler veya rapor edebilirler. 
 
 ![forum](https://user-images.githubusercontent.com/61551987/97185289-ec3c7480-17b0-11eb-9c87-68bd44fa85e4.JPG)
+
+#### Profil 
+
+Her kayıt olan kullanıcın otomatik profil modeli oluşturuluyor. Bu şekilde user modelini değiştirmeden user modeline profil modelini bağlayıp bu şekilde kullanmayı seçtim. Buradan oyunlarımdan daha önce seçtiği oyunlara ulaşabilir ve listesinde olan oyunun hangi arkadaşında da listesinde olduğunu görebilir. Kullanıcın blokladığı kullanıcıları buradan görebilir ve bloğu buradan kaldırabilir. Kullanıcın blokladığı user, bloklayen kullanıcın profilini göremez ayrıca bloklayan kullanıcı bloklanan kullanıcının yazdığı forumlar /forum/ da gözükmez. 
+
+![Profil](https://user-images.githubusercontent.com/61551987/97185729-797fc900-17b1-11eb-8d0c-7cca1a5c19ee.JPG)
