@@ -29,3 +29,4 @@ Oyunların hangi platformlar da oynandığını boolean field ile oluşturdum ve
 
 Moderetorlerin yazdığı haberleri sıralıyorum. Kategoriler oyunlar kategorosin de olduğu gibi icontains ile yaptım. 
 
+![Haberler](https://user-images.githubusercontent.com/61551987/97183322-b1d1d800-17ae-11eb-8e0c-e640788f6475.JPG)
