@@ -19,3 +19,8 @@ Djangonun hazır user modeli ile kullanarak kayıt ol sayfasını oluşturdum.
 Hazır olan user modelini veri tabanını ile sorgulayıp girişi sağladım.
 
 ![Giriş Yap](https://user-images.githubusercontent.com/61551987/97161013-4415b400-178e-11eb-9021-033255f8ce69.JPG)
+
+#### Giriş Yap
+
+Oyunların hangi platformlar da oynandığını boolean field ile oluşturdum ve bunları bu şekilde ayırdım. Kategorileri charfield ile oluşturup sorgu işlemini icontains ile yaptım. Her oyun sırasının sonun da bir buton ekleyerek eğer kullanıcı giriş yaptı ise kendi listesine almasına olanak sağladım. 
+![Oyunlar](https://user-images.githubusercontent.com/61551987/97161279-a5d61e00-178e-11eb-9226-72e13b8bb04e.JPG)
