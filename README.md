@@ -13,3 +13,8 @@ Sayfanın en üstünde oyunlardan alınan 3 tane gastgele oyun ile slideshow yap
 Djangonun hazır user modeli ile kullanarak kayıt ol sayfasını oluşturdum.
 
 ![Kayıt Ol](https://user-images.githubusercontent.com/61551987/97160693-c651a880-178d-11eb-9a40-3b514735cdaf.JPG)
+
+#### Giriş Yap
+
+Hazır olan user modelini veri tabanını ile sorgulayıp girişi sağladım.
+
