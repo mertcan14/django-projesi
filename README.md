@@ -8,3 +8,8 @@ Sayfanın en üstünde oyunlardan alınan 3 tane gastgele oyun ile slideshow yap
 
 ![AnaSayfa](https://user-images.githubusercontent.com/61551987/97159541-1a5b8d80-178c-11eb-8c27-d0f5a0752f88.JPG)
 
+#### Kayıt Ol
+
+Djangonun hazır user modeli ile kullanarak kayıt ol sayfasını oluşturdum.
+
+
