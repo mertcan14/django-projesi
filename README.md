@@ -42,3 +42,9 @@ Sayfa da haberi yazan moderetör ile ilgili bir bölümde önceden yazdığı ha
 Haber eklemeyi /haberler/addHaber/ den yapıyorum content kısmını djongo ckeditor ile yaptım bu şekilde video ve görsel paylaşabildim. Forum ekle kısmı da aynı şekil de yaptım. 
 
 ![Haber Ekle](https://user-images.githubusercontent.com/61551987/97184632-2c4f2780-17b0-11eb-9e26-6d1f31c9ed3f.JPG)
+
+#### Forum 
+
+Kullanıcılar giriş yaptı ise forum da yazı yazabilirler, yorum bırakabilirler, beğenebilirler veya rapor edebilirler. 
+
+![forum](https://user-images.githubusercontent.com/61551987/97185289-ec3c7480-17b0-11eb-9c87-68bd44fa85e4.JPG)
